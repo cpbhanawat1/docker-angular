@@ -3,19 +3,31 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      docker: 18
+      nodejs: 14 # Replace this with the runtime relevant to your project, e.g., 'nodejs', 'python', etc.
+    commands:
+      - echo Installing Docker...
+      - apt-get update -y
+      - apt-get install -y docker
+
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 847245319109.dkr.ecr.ap-south-1.amazonaws.com
+
   build:
     commands:
       - echo Build started on `date`
-      - echo Building the Docker image...          
+      - echo Building the Docker image...
       - docker build -t test:latest .
-      - docker tag test:latest 847245319109.dkr.ecr.ap-south-1.amazonaws.com/test:latest || { echo 'Docker tag failed'; exit 1; }     
+
   post_build:
     commands:
       - echo Build completed on `date`
-      - echo Pushing the Docker image...
-      - docker push 847245319109.dkr.ecr.ap-south-1.amazonaws.com/test:latest || { echo 'Docker push failed'; exit 1; }
+      - echo Tagging the Docker image...
+      - docker tag test:latest 847245319109.dkr.ecr.ap-south-1.amazonaws.com/test:latest
+      - echo Pushing the Docker image to ECR...
+      - docker push 847245319109.dkr.ecr.ap-south-1.amazonaws.com/test:latest
+
+artifacts:
+  files: '**/*'
+  discard-paths: yes
