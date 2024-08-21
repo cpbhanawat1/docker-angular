@@ -6,7 +6,7 @@ phases:
       nodejs: 14 # Replace this with the runtime relevant to your project, e.g., 'nodejs', 'python', etc.
     commands:
       - echo Installing Docker...
-      - apt-get update -y
+      - yum update -y
       - apt-get install -y docker
 
   pre_build:
