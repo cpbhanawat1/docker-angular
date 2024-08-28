@@ -18,7 +18,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -t test:latest .
+      - docker build -t .
 
   post_build:
     commands:
