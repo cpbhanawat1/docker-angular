@@ -18,11 +18,11 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - cd $CODEBUILD_SRC_DIR
       - echo Current directory is $(pwd)
       - ls -l
       - echo Building the Docker image...
-      - docker build -t docker-angular/Dockerfile .
+      - cd docker-angular
+      - docker build -t test .
 
   post_build:
     commands:
