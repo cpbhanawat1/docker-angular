@@ -18,7 +18,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -t .
+      - docker build -t myaap .
 
   post_build:
     commands:
