@@ -8,9 +8,8 @@ phases:
       - echo Installing Docker...
       - yum update -y
       - yum install -y docker
-      - amazon-linux-extras install docker -y
-      - service docker start
-      - service enable start
+      - sudo systemctl start docker
+      - sudo systemctl enable docker
 
   pre_build:
     commands:
