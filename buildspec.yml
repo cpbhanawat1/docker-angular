@@ -21,7 +21,6 @@ phases:
       - echo Current directory is $(pwd)
       - ls -l
       - echo Building the Docker image...
-      - cd docker-angular
       - docker build -t test .
 
   post_build:
