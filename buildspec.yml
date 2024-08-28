@@ -22,7 +22,7 @@ phases:
       - echo Current directory is $(pwd)
       - ls -l
       - echo Building the Docker image...
-      - docker build -t myapp:latest .
+      - docker build -t test:latest .
 
   post_build:
     commands:
