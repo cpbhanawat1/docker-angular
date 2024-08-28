@@ -8,6 +8,8 @@ phases:
       - echo Installing Docker...
       - yum update -y
       - yum install -y docker
+      - systemctl start docker
+      - systemctl enable docker
 
   pre_build:
     commands:
