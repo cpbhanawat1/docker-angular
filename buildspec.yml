@@ -8,8 +8,7 @@ phases:
       - echo Installing Docker...
       - yum update -y
       - yum install -y docker
-      - sudo systemctl start docker
-      - sudo systemctl enable docker
+
 
   pre_build:
     commands:
@@ -20,7 +19,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -t myaap .
+      - docker build -t myapp -f Dockerfile .
 
   post_build:
     commands:
